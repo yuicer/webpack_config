@@ -1,10 +1,4 @@
 body {
-	background: url(./assets/me.png) no-repeat;
-	font-size: 50px;
-}
-
-div {
-	width: 100px;
-	height: 100px;
-	background: url(./assets/logo.png) no-repeat;
+    background: url(./assets/me.png) no-repeat;
+    font-size: 50px;
 }
