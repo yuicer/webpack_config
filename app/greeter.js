@@ -1,8 +1,6 @@
-
 function greet() {
-	var greet = document.createElement('div');
-	greet.textContent = "greetsdd";
-	return greet;
+    var greet = 'haha'
+    return greet;
 }
-export default greet
 
+export default greet
