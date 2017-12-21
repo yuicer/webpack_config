@@ -1,7 +1,6 @@
 class a {
-    constructor() {
-        this.a = 1
-    }
+  constructor() {
+    this.a = 1
+  }
 }
-
 export default a
