@@ -3,16 +3,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path')
 
 function resolve(path_) {
-  return path.join(__dirname, path_)
+  return path.join(__dirname, '../', path_)
 }
 
 module.exports = {
-  entry: resolve('app.js'),
+  entry: {
+    main: resolve('app.js'),
+    a: resolve('a.js')
+  },
   output: {
     filename: '[name].js',
     path: resolve('dist/static'),
-    publicPath: './static',
-
+    publicPath: './static/'
   },
   resolve: {
     extensions: ['.js', '.json', '.css'],
@@ -20,18 +22,22 @@ module.exports = {
       'assets': resolve('src/assets')
     }
   },
-  devtool: "source_map",
-  devServer: {
-    hot: true,
-    // publicPath: '/static'
-  },
   plugins: [
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       filename: resolve('dist/index.html'),
       template: 'index.html',
-      inject: true
+      inject: true,
+      chunks: ['main']
+    }),
+    new HtmlWebpackPlugin({
+      filename: resolve('dist/a.html'),
+      template: 'a.html',
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true
+      },
+      chunks: ['a']
     })
   ],
   module: {
