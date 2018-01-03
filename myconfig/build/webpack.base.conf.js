@@ -1,5 +1,4 @@
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path')
 
 function resolve(path_) {
@@ -9,7 +8,6 @@ function resolve(path_) {
 module.exports = {
   entry: {
     main: resolve('app.js'),
-    a: resolve('a.js')
   },
   output: {
     filename: '[name].js',
@@ -22,24 +20,6 @@ module.exports = {
       'assets': resolve('src/assets')
     }
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      filename: resolve('dist/index.html'),
-      template: 'index.html',
-      inject: true,
-      chunks: ['main']
-    }),
-    new HtmlWebpackPlugin({
-      filename: resolve('dist/a.html'),
-      template: 'a.html',
-      inject: true,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true
-      },
-      chunks: ['a']
-    })
-  ],
   module: {
     rules: [{
       test: /\.js$/,
@@ -54,12 +34,24 @@ module.exports = {
       test: /\.css$/,
       use: ['style-loader', 'css-loader']
     }, {
-      test: /\.(png|jpg|gif)$/,
+      test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
       use: {
         loader: 'url-loader',
         options: {
           limit: 8192
         }
+      }
+    }, {
+      test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+      loader: 'url-loader',
+      options: {
+        limit: 10000,
+      }
+    }, {
+      test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+      loader: 'url-loader',
+      options: {
+        limit: 10000,
       }
     }]
   }

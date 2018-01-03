@@ -20,7 +20,7 @@
     "webpack-merge": "^4.1.1"
   },
   "scripts": {
-    "dev": "webpack-dev-server --inline  --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline  --progress --config  build/webpack.dev.conf.js",
     "build": "webpack --config build/webpack.prod.conf.js"
   },
   "repository": {

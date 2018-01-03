@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path')
 
 function resolve(path_) {
@@ -10,16 +11,16 @@ module.exports = merge(baseWebpackConfig, {
   devtool: 'eval-source-map',
   devServer: {
     hot: true,
-    contentBase: resolve('dist'),
+    publicPath: '/'
+    // contentBase: resolve('dist'),
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"development"',
-      // 'process.env': {
-      //   NODE_ENV: '"development"'
-      // }
-    }),
+    new HtmlWebpackPlugin({
+      filename: resolve('dist/index.html'),
+      template: 'index.html',
+      inject: true,
+    })
   ]
 })
